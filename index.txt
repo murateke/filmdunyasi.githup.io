@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Dünyası</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #7f003f; /* Ana renk */
+        color: #333;
+    }
+
+    /* Kapak Fotoğrafı Stili */
+    .hero {
+        position: relative;
+        height: 400px;
+        background: url('file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/gs1-us-what-we-do.webp') no-repeat center center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Gölge efekti */
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero p {
+        font-size: 1.5rem;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Navigasyon çubuğu */
+    nav {
+        background-color: #222;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        z-index: 1000;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 0 15px;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        padding: 10px 15px;
+        transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+        background-color: #444;
+        border-radius: 5px;
+    }
+
+    nav ul li a.active {
+        background-color: #444;
+        border-radius: 5px;
+    }
+
+    /* İçerik */
+    .content {
+        display: none;
+        margin-top: 80px;
+        padding: 20px;
+    }
+
+    .content.active {
+        display: block;
+    }
+
+    footer {
+        background-color: #222;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+    }
+</style>
+<style>
+ /* Başlık Stili */
+    header {
+      background-color: #ffffff;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    /* Film Listesi Konteyneri */
+    .movie-list {
+      display: flex;
+      flex-wrap: wrap; /* Birden fazla satır düzeni sağlar */
+      justify-content: center;
+      gap: 20px; /* Kartlar arasındaki boşluk */
+      padding: 20px;
+    }
+
+    /* Film Kartı Stili */
+    .movie-card {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    /* Fragman Bölümü */
+    .trailer {
+      flex: 3; /* Daha geniş alan */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .trailer iframe {
+      width: 100%;
+      max-width: 360px;
+      height: 200px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    /* Afiş Bölümü */
+    .poster {
+      flex: 2; /* Daha dar alan */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .poster img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+<style>
+    /* Genel stil */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navigasyon çubuğu */
+    nav {
+      background-color: #333;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      z-index: 1000;
+    }
+
+    /* Menü öğeleri */
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 10px 15px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    nav ul li a:hover {
+      background-color: #575757;
+      border-radius: 5px;
+    }
+
+    /* Aktif sayfa */
+    nav ul li a.active {
+      background-color: #04AA6D;
+      border-radius: 5px;
+    }
+
+    /* İçerik */
+    .content {
+      display: none; /* Varsayılan olarak gizli */
+      margin-top: 80px;
+      padding: 20px;
+    }
+
+    .content.active {
+      display: block; /* Aktif olduğunda görünür */
+    }
+  </style>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .film-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .film-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+        .film-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+        .film-card h3 {
+            margin: 15px 0;
+            font-size: 1.2em;
+        }
+        .film-card p {
+            padding: 0 10px 15px;
+            color: #666;
+        }
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+body {
+        background-color: #7f003f; /* Renk burada belirlenir */
+    }
+    </style>
+
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" data-target="home" class="active">Ana Sayfa</a></li>
+            <li><a href="#" data-target="about">Hakkında</a></li>
+            <li><a href="#" data-target="services">Hizmetler</a></li>
+            <li><a href="#" data-target="contact">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <!-- Kapak Fotoğrafı -->
+    <div class="hero" id="home">
+        <div>
+            <h1>Film Dünyası</h1>
+            <p>Film İzlemenin Tek Adresi!</p>
+        </div>
+    </div>
+<!-- İçerikler -->
+  <div id="home" class="content active">
+    <h1>Ana Sayfa</h1>
+<header>
+    <h1>Film Fragmanları</h1>
+    <p>Film İzlemenin Tek Adresi!</p>
+  </header>
+
+  <!-- Film Listesi -->
+  <div class="movie-list">
+
+    <!-- 1. Film -->
+    <div class="movie-card">
+      <div class="trailer">
+        <video width="400" height="250" controls>
+  <source src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Videolar/Twilight%20(2008)%20Official%20Trailer.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+      </div>
+      <div class="poster">
+        <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/AlacaKaranl%C4%B1k.jpeg" alt="Film Afişi 1">
+      </div>
+    </div>
+
+    <!-- 2. Film -->
+    <div class="movie-card">
+      <div class="trailer">
+       <video width="400" height="250" controls>
+  <source src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Videolar/AYLA%20-%20Resmi%20Fragman%C4%B1%20%232%20%20(S%C4%B0NEMALARDA).mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+      </div>
+      <div class="poster">
+        <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/Ayla_Film_Afi%C5%9Fi.jpeg" alt="Film Afişi 2">
+      </div>
+    </div>
+
+    <!-- 3. Film -->
+    <div class="movie-card">
+      <div class="trailer">
+        <video width="400" height="250" controls>
+  <source src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Videolar/Thor_%20Love%20and%20Thunder%20_%C2%A0Thor_%20A%C5%9Fk%20ve%20G%C3%B6k%20G%C3%BCr%C3%BClt%C3%BCs%C3%BC%20_%20Altyaz%C4%B1l%C4%B1%20Fragman.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+      </div>
+      <div class="poster">
+        <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/Thor.jpg" alt="Film Afişi 3">
+      </div>
+    </div>
+
+    <!-- 4. Film -->
+    <div class="movie-card">
+      <div class="trailer">
+        <video width="400" height="250" controls>
+  <source src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Videolar/Deadpool%20ve%20Wolverine%20_%20Yeni%20Dublajl%C4%B1%20Resmi%20Fragman%20_%2026%20Temmuz%20da%20Sinemalarda!.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+      </div>
+      <div class="poster">
+        <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/Deadpool.jpg.jpg" alt="Film Afişi 4">
+      </div>
+    </div>
+
+    <!-- 5. Film -->
+    <div class="movie-card">
+      <div class="trailer">
+        <video width="400" height="250" controls>
+  <source src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Videolar/Vahs%CC%A7i%20Robot%20_%20The%20Wild%20Robot%20_%20Dublajl%C4%B1%20Fragman.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+      </div>
+      <div class="poster">
+        <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/9c286d15bc15fb2580b053d91b22bca8.jpg" alt="Film Afişi 5">
+      </div>
+    </div>
+
+    <!-- 6. Film -->
+    <div class="movie-card">
+      <div class="trailer">
+        <video width="400" height="250" controls>
+  <source src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Videolar/Maymunlar%20Cehennemi_%20Yeni%20Krall%C4%B1k%20_%20Dublajl%C4%B1%20Resmi%20Fragman%20_%2010%20May%C4%B1s%20ta%20Sinemalarda!.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+      </div>
+      <div class="poster">
+        <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/images.jpg" alt="Film Afişi 6">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <div id="about" class="content">
+    <h1>Hakkında</h1>
+    <p>Film Dünyası, sinema tutkunlarının bir araya geldiği, filmlerle ilgili her şeyin keşfedildiği özel bir platformdur. Amacımız, film dünyasının büyüleyici atmosferine adım atan herkes için ilham verici bir rehber olmaktır.
+
+Burada, geçmişten günümüze uzanan film arşivleri, vizyonun en yeni yapımları, bağımsız sinemanın göz alıcı eserleri ve unutulmaz klasikler hakkında detaylı içeriklere ulaşabilirsiniz. Film eleştirileri, yönetmen incelemeleri, oyuncu biyografileri ve sektörün perde arkasındaki hikâyeleriyle sinema sanatının derinliklerine inmeyi hedefliyoruz.
+
+Film Dünyası, yalnızca izlemekle yetinmeyen, aynı zamanda film üzerine düşünmek, tartışmak ve öğrenmek isteyen herkes için bir yuva. Siz de bu büyüleyici dünyaya katılın ve sinemanın eşsiz yolculuğunda bizimle birlikte olun.</p>
+  </div>
+
+  <div id="services" class="content">
+    <h1>Film Konuları</h1>
+    <p><div class="container">
+        <h2>Popüler Filmler</h2>
+        <div class="film-list">
+            <div class="film-card">
+                <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/AlacaKaranl%C4%B1k.jpeg" alt="Film Afişi">
+                <h3>ALACAKARANLIK</h3>
+                <p>17 yaşındaki Isabella, babası Charlie ile birlikte yaşamak üzere küçük bir kasaba olan Forks'a taşınır. Burada 108 yaşında bir vampir olup 17 yaşında görünen sınıf arkadaşı Edward ile tanışır. Edward'ın romantizmden uzak durmaya çalışmasına rağmen birbirlerine aşık olurlar.</p>
+            </div>
+            <div class="film-card">
+                <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/Ayla_Film_Afi%C5%9Fi.jpeg" alt="Film Afişi">
+                <h3>AYLA</h3>
+                <p>1950 yılında savaşta yer alan Süleyman Astsubay savaş meydanında küçük bir kız bulur. 5 yaşındaki bu Koreli kız yetimdir ve nereye gideceğini bilmemektedir. Astsubay kızı yanına alır ve Ayla ismini verir. Birliğin neşesi haline gelen Ayla ile astsubay kısa sürede baba-kız gibi olurlar.</p>
+            </div>
+            <div class="film-card">
+                <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/Thor.jpg" alt="Film Afişi">
+                <h3>THOR</h3>
+                <p>Efsanevi Thor macerası, Marvel Evreni'nden, Asgard'ın mistik atmosferine kadar uzanıyor. “Thor” yalnız bir adamın destansı yolculuğunun, tahtın veliahdı hırçın bir prensken, tahta geçme hakkını kazanan bir süper kahramanın öyküsünü epik bir kurguyla anlatıyor...</p>
+            </div>
+            <div class="film-card">
+                <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/Deadpool.jpg.jpg" alt="Film Afişi">
+                <h3>DEADPOOL & WOLVERİNE</h3>
+                <p>Reynolds ve Jackman, doğdukları karakterlere yeniden hayat verdiği bu filmde iki kahramanın evreni kurtarmak için bir araya gelmelerini ve Emma Corrin'in kötü karakteri Cassandra Nova'ya karşı mücadele etmelerini konu ediniyor.</p>
+            </div>
+<div class="film-card">
+                <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/9c286d15bc15fb2580b053d91b22bca8.jpg" alt="Film Afişi">
+                <h3>VAHŞİ ROBOT</h3>
+                <p>Animasyon film, ıssız bir adaya düşen ve zorlu çevre koşullarına uyum sağlamayı öğrenmesi gereken bir robotun -ROZZUM ünite 7134'ün, kısaca "Roz"un- yavaş yavaş adadaki hayvanlarla ilişki kurmasını ve yetim bir kaz yavrusunun evlat edinmesini konu alıyor.</p>
+            </div>
+<div class="film-card">
+                <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/images.jpg" alt="Film Afişi">
+                <h3>MAYMUNLAR CEHENNEMİ</h3>
+                <p>Sezar'ın saltanatından birkaç nesil sonra, hakim tür maymunlar olurken insanlar gölgelerde yaşamaya itilir. Yeni acımasız bir maymun lideri, güçlü bir imparatorluk kurar. Bu sırada genç bir maymun, geçmiş hakkındaki bildiklerini sorgulayacağı macera dolu bir yolculuğa çıkar.</p>
+            </div>
+<div class="film-card">
+                <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/7fc3f524abcc3b8ccbf50f62aaed9078.jpg" alt="Film Afişi">
+                <h3>ÇILGIN HIRSIZ 4</h3>
+                <p>Gru ve Lucy ile kızlarının - Margo, Edith ve Agnes - Gru ailesinin yeni üyesi, babasına eziyet etmeye kararlı Gru Jr.'ı kucaklarına almasıyla yeni bir bölüme başlıyor. Gru, yeni bir düşman olan Maxime Le Mal ve onun çekici ama tehlikeli kız arkadaşı Valentina ile karşı karşıya kalır ve ailece kaçmak zorunda kalırlar.</p>
+            </div>
+<div class="film-card">
+                <img src="file:///C:/Users/LENOVO/Desktop/Web%20Sitesi/Film%20foto/DUNE.jpg.jpg" alt="Film Afişi">
+                <h3>DUNE ÇÖL GEZEGENİ 2</h3>
+                <p>Dune: Çöl Gezegeni Bölüm İki, ailesini yok edenlere karşı intikam savaşı başlatan Paul Atreides'in hikayesini konu ediyor. Paul Atreides, ailesini yok eden komploculara karşı bir intikam savaşı başlatır. Bu süreçte Paul, Chani ve Fremen'lerle güçlerini birleştirir. Ancak Paul, zor bir seçimle karşı karşıya kalır.</p>
+            </div>
+        </div>
+    </div>
+  </div>
+  </div>
+
+  <div id="contact" class="content">
+    <h1>İletişim</h1>
+    <p>www.filmdünyası.com</p>
+    <p>film.dünyası@gmail.com</p>
+    <p>55-222-39-87</p>
+  </div>
+
+  <script>
+    // Tüm bağlantıları seç
+    const menuLinks = document.querySelectorAll('nav ul li a');
+    // Tüm içerikleri seç
+    const contents = document.querySelectorAll('.content');
+
+    // Her bağlantıya tıklama olayı ekle
+    menuLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault(); // Sayfanın yenilenmesini engelle
+        const targetId = link.getAttribute('data-target'); // Hedef içeriği al
+
+        // İçeriklerde göster/gizle işlemi
+        contents.forEach(content => {
+          if (content.id === targetId) {
+            content.classList.toggle('active'); // Tıklanılan içeriği göster/gizle
+          } else {
+            content.classList.remove('active'); // Diğer içerikleri gizle
+          }
+        });
+
+        // Menüde aktif bağlantıyı güncelle
+        menuLinks.forEach(link => link.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+  </script>
+
+
+
+    
+
+    <footer>
+        <p>&copy; 2024 Film Dünyası | Tüm hakları saklıdır.</p>
+    </footer>
+
+</body>
+</html>
+
+   
